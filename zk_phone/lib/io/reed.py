@@ -15,7 +15,7 @@ class ReedSwitchInput:
 
     def __init__(self, callback):
         self.callback = callback
-        GPIO.setup(REED_SWITCH, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(REED_SWITCH, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     def attach(self):
         GPIO.add_event_detect(REED_SWITCH, GPIO.BOTH, callback=self.handler, bouncetime=300)
