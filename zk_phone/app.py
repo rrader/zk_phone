@@ -1,5 +1,7 @@
 from time import sleep
 
+from RPi import GPIO
+
 from zk_phone.lib.io.keyboard import KeyboardInput
 from zk_phone.lib.io.lcd_output import LCD
 from zk_phone.lib.io.reed import ReedSwitchInput
@@ -70,6 +72,8 @@ class HandsetRaised(BaseState):
 
 class App:
     def __init__(self):
+        GPIO.setmode(GPIO.BCM)
+
         self.reed = ReedSwitchInput(self.reed_switched)
         self.lcd = LCD()
         self.kb = KeyboardInput(self.keypressed)

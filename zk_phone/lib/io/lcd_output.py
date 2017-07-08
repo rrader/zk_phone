@@ -22,7 +22,6 @@ class LCD:
         self._lcd = lcd.CharLCD(16, 2, gpio)
 
     def attach(self):
-        GPIO.setmode(GPIO.BCM)
         self._lcd.init()
         self._lcd.set_xy(0, 0)
         print('LCD attached')
