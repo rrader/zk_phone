@@ -7,6 +7,7 @@ from zk_phone.lib.io.keyboard import KeyboardInput
 from zk_phone.lib.io.lcd_output import LCD
 from zk_phone.lib.io.reed import ReedSwitchInput
 from zk_phone.lib.net import get_ips
+from zk_phone.lib.player import Player
 
 
 class BaseState:
@@ -60,7 +61,7 @@ class HandsetRaised(BaseState):
         self.app.lcd.print('Station and #', 0, 0)
         self.buf = None
         self.kb_clear_buf()
-        self.process = None
+        self.player = None
 
     def keypressed(self, event):
         self.buf.append(str(event.key))
@@ -75,12 +76,12 @@ class HandsetRaised(BaseState):
         self.app.lcd.print('Playing {}'.format(station), pos_y=1, pos_x=0)
         if station == 1:
             # Radio Rocks
-            self.process = subprocess.Popen(["mplayer", "-playlist", "http://www.radioroks.ua/RadioROKS_32.m3u"])
+            self.player = Player("http://www.radioroks.ua/RadioROKS_32.m3u")
             print('started')
 
     def reed_switched(self, event):
-        if self.process:
-            self.process.kill()
+        if self.player:
+            self.player.kill()
         if not event.is_raised:
             self.app.state = HandsetPut(self.app, 'Thank you!')
 
