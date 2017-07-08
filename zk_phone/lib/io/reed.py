@@ -2,7 +2,7 @@ import datetime
 
 from RPi import GPIO
 
-REED_SWITCH = 21  # BCM numbering
+REED_SWITCH = 7  # BCM numbering
 
 
 class ReedSwitchedEvent:
