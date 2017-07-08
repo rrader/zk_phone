@@ -19,7 +19,7 @@ class StartState:
 
         if self.kb_buffer_str == '*1#':
             for n, ip in enumerate(get_ips()[:2]):
-                self.app.lcd.print(ip, pos_y=n)
+                self.app.lcd.print(ip, pos_y=1, pos_x=0)
             self.kb_clear_buf()
 
     def kb_clear_buf(self):
