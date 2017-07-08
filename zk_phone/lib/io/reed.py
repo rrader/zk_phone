@@ -20,11 +20,11 @@ class ReedSwitchInput:
 
     def attach(self):
         GPIO.add_event_detect(REED_SWITCH, GPIO.BOTH, callback=self.handler, bouncetime=300)
-        print('Reed switch attached')
+        print('Reed switch attached ({})'.format(self.is_raised))
 
     def handler(self, channel):
-        val = GPIO.input(REED_SWITCH)
-        self.callback(ReedSwitchedEvent(val))
+        self.callback(ReedSwitchedEvent(self.is_raised))
 
+    @property
     def is_raised(self):
         return GPIO.input(REED_SWITCH)

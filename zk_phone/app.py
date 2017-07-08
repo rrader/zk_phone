@@ -73,7 +73,7 @@ class App:
         self.kb = KeyboardInput(self.keypressed)
         self.reed = ReedSwitchInput(self.reed_switched)
         self.lcd = LCD()
-        if self.reed.is_raised():
+        if self.reed.is_raised:
             self.state = HandsetRaised(self)
         else:
             self.state = HandsetPut(self)
