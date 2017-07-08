@@ -1,5 +1,6 @@
 from time import sleep
 
+import subprocess
 from RPi import GPIO
 
 from zk_phone.lib.io.keyboard import KeyboardInput
@@ -31,10 +32,10 @@ class NoState:
 
 
 class HandsetPut(BaseState):
-    def __init__(self, app):
+    def __init__(self, app, text='Hello!'):
         super().__init__(app)
         self.app.lcd.clear()
-        self.app.lcd.print('HELLO', 0, 0)
+        self.app.lcd.print(text, 0, 0)
         self.buf = None
         self.kb_clear_buf()
 
@@ -59,6 +60,7 @@ class HandsetRaised(BaseState):
         self.app.lcd.print('Station and #', 0, 0)
         self.buf = None
         self.kb_clear_buf()
+        self.process = None
 
     def keypressed(self, event):
         self.buf.append(str(event.key))
@@ -71,10 +73,15 @@ class HandsetRaised(BaseState):
     def play(self):
         station = int(self.kb_buffer_str[:-1])
         self.app.lcd.print('Playing {}'.format(station), pos_y=1, pos_x=0)
+        if station == 1:
+            # Radio Rocks
+            self.process = subprocess.Popen(["mplayer", "-playlist", "http://www.radioroks.ua/RadioROKS_32.m3u"])
 
     def reed_switched(self, event):
+        if self.process:
+            self.process.kill()
         if not event.is_raised:
-            self.app.state = HandsetPut(self.app)
+            self.app.state = HandsetPut(self.app, 'Thank you!')
 
 
 class App:

@@ -14,6 +14,7 @@ setup(
         'charlcd==0.4.0',
         'RPi.GPIO==0.6.3',
         'netifaces',
+        'pyaudio',
     ],
     entry_points={
         'console_scripts': [
