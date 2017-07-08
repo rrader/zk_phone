@@ -70,13 +70,14 @@ class HandsetRaised(BaseState):
 
 class App:
     def __init__(self):
-        self.kb = KeyboardInput(self.keypressed)
-        self.reed = ReedSwitchInput(self.reed_switched)
-        self.lcd = LCD()
         if self.reed.is_raised:
             self.state = HandsetRaised(self)
         else:
             self.state = HandsetPut(self)
+
+        self.kb = KeyboardInput(self.keypressed)
+        self.reed = ReedSwitchInput(self.reed_switched)
+        self.lcd = LCD()
 
     def keypressed(self, event):
         if hasattr(self.state, 'keypressed'):
