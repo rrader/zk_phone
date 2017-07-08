@@ -20,7 +20,6 @@ class LCD:
         gpio = Gpio()
         gpio.pins = PINS
         self._lcd = lcd.CharLCD(16, 2, gpio)
-        self.attach()
 
     def attach(self):
         GPIO.setmode(GPIO.BCM)
