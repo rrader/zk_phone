@@ -75,7 +75,8 @@ class HandsetRaised(BaseState):
         self.app.lcd.print('Playing {}'.format(station), pos_y=1, pos_x=0)
         if station == 1:
             # Radio Rocks
-            self.process = subprocess.Popen(["mplayer", "-playlist", "http://www.radioroks.ua/RadioROKS_32.m3u"], stdout=subprocess.STDOUT)
+            self.process = subprocess.Popen(["mplayer", "-playlist", "http://www.radioroks.ua/RadioROKS_32.m3u"])
+            print('started')
 
     def reed_switched(self, event):
         if self.process:
