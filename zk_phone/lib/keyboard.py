@@ -26,10 +26,10 @@ class KeyboardInput:
         self.callback = callback
         self.keypad = factory.create_keypad(keypad=KEYPAD, row_pins=ROW_PINS, col_pins=COL_PINS)
         self.attach()
-        print('Keypad attached')
 
     def attach(self):
         self.keypad.registerKeyPressHandler(self.handler)
+        print('Keypad attached')
 
     def handler(self, key):
         self.callback(KeyPressedEvent(key))
