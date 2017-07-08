@@ -1,16 +1,15 @@
 import datetime
 from pad4pi import rpi_gpio
 
-
 KEYPAD = [
-    [1, 2, 3],
-    [4, 5, 6],
     [7, 8, 9],
+    [4, 5, 6],
+    [1, 2, 3],
     ["*", 0, "#"]
 ]
 
-ROW_PINS = [4, 14, 15, 17]  # BCM numbering
-COL_PINS = [18, 27, 22]  # BCM numbering
+ROW_PINS = [17, 24, 27, 23]  # BCM numbering
+COL_PINS = [8, 22, 25]  # BCM numbering
 
 factory = rpi_gpio.KeypadFactory()
 
@@ -27,6 +26,7 @@ class KeyboardInput:
         self.callback = callback
         self.keypad = factory.create_keypad(keypad=KEYPAD, row_pins=ROW_PINS, col_pins=COL_PINS)
         self.attach()
+        print('Keypad attached')
 
     def attach(self):
         self.keypad.registerKeyPressHandler(self.handler)
