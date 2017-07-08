@@ -9,12 +9,12 @@ from zk_phone.lib.net import get_ips
 class StartState:
     def __init__(self, app):
         self.app = app
-        self.app.lcd.print('HELLO')
+        self.app.lcd.print('HELLO', 0, 0)
         self.buf = None
         self.kb_clear_buf()
 
     def keypressed(self, event):
-        self.buf.append(event.key)
+        self.buf.append(str(event.key))
         self.update_lcd()
 
         if self.kb_buffer_str == '*1#':
@@ -26,7 +26,7 @@ class StartState:
         self.buf = []
 
     def update_lcd(self):
-        self.app.lcd.print(self.kb_buffer_str)
+        self.app.lcd.print(self.kb_buffer_str, 0, 0)
 
     @property
     def kb_buffer_str(self):
