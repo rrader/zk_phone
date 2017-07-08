@@ -26,4 +26,4 @@ class ReedSwitchInput:
 
     @property
     def is_raised(self):
-        return GPIO.input(REED_SWITCH)
+        return not GPIO.input(REED_SWITCH)
