@@ -1,3 +1,5 @@
+from time import sleep
+
 from zk_phone.lib.keyboard import KeyboardInput
 
 
@@ -9,7 +11,8 @@ class App:
         print(event.key)
 
     def run(self):
-        pass
+        while True:
+            sleep(1)
 
 
 def create_app():
