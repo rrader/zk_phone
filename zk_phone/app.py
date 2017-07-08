@@ -7,7 +7,7 @@ from zk_phone.lib.io.keyboard import KeyboardInput
 from zk_phone.lib.io.lcd_output import LCD
 from zk_phone.lib.io.reed import ReedSwitchInput
 from zk_phone.lib.net import get_ips
-from zk_phone.lib.player import Player
+from zk_phone.lib.player import Player, audio_min
 
 
 class BaseState:
@@ -91,6 +91,7 @@ class App:
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
 
+        audio_min()
         self.state = NoState(self)
 
         self.reed = ReedSwitchInput(self.reed_switched)

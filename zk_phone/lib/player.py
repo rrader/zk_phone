@@ -6,6 +6,22 @@ from os import read, O_NONBLOCK
 from time import sleep
 
 
+def audio_max():
+    p = subprocess.Popen(
+        ["amixer", "cset", "numid=1", "100%"],
+        shell=False
+    )
+    p.wait()
+
+
+def audio_min():
+    p = subprocess.Popen(
+        ["amixer", "cset", "numid=1", "0%"],
+        shell=False
+    )
+    p.wait()
+
+
 class Player(threading.Thread):
     def __init__(self, stream):
         self.stream = stream
@@ -16,11 +32,7 @@ class Player(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        p = subprocess.Popen(
-            ["amixer", "cset", "numid=1", "100%"],
-            shell=False
-        )
-        p.wait()
+        audio_max()
         self.p = subprocess.Popen(
             ["mplayer", "-playlist", self.stream],
             shell=False,
