@@ -33,6 +33,7 @@ class NoState:
 class HandsetPut(BaseState):
     def __init__(self, app):
         super().__init__(app)
+        self.app.lcd.clear()
         self.app.lcd.print('HELLO', 0, 0)
         self.buf = None
         self.kb_clear_buf()
@@ -54,7 +55,8 @@ class HandsetPut(BaseState):
 class HandsetRaised(BaseState):
     def __init__(self, app):
         super().__init__(app)
-        self.app.lcd.print('Station number and #', 0, 0)
+        self.app.lcd.clear()
+        self.app.lcd.print('Station and #', 0, 0)
         self.buf = None
         self.kb_clear_buf()
 
