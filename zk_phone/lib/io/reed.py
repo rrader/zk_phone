@@ -25,3 +25,6 @@ class ReedSwitchInput:
     def handler(self, channel):
         val = GPIO.input(REED_SWITCH)
         self.callback(ReedSwitchedEvent(val))
+
+    def is_raised(self):
+        return GPIO.input(REED_SWITCH)
