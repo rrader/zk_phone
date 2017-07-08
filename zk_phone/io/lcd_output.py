@@ -5,13 +5,13 @@ from charlcd.drivers.gpio import Gpio
 from zk_phone.lib.events_queue.io import Output
 
 PINS = {
-    'RS': 25,  # 0 ->instruction, 1->data
-    'E': 24,
+    'RS': 2,  # 0 ->instruction, 1->data
+    'E': 3,
     'E2': None,
-    'DB4': 22,
-    'DB5': 23,
-    'DB6': 27,
-    'DB7': 17
+    'DB4': 4,
+    'DB5': 14,
+    'DB6': 15,
+    'DB7': 18
 }
 
 
