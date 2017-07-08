@@ -25,6 +25,11 @@ class BaseState:
         return ''.join(self.buf)
 
 
+class NoState:
+    def __init__(self, app):
+        self.app = app
+
+
 class HandsetPut(BaseState):
     def __init__(self, app):
         super().__init__(app)
@@ -74,18 +79,19 @@ class App:
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
 
+        self.state = NoState(self)
+
         self.reed = ReedSwitchInput(self.reed_switched)
         self.lcd = LCD()
         self.kb = KeyboardInput(self.keypressed)
 
         self.reed.attach()
+        self.lcd.attach()
+        self.kb.attach()
         if self.reed.is_raised:
             self.state = HandsetRaised(self)
         else:
             self.state = HandsetPut(self)
-
-        self.lcd.attach()
-        self.kb.attach()
 
     def keypressed(self, event):
         if hasattr(self.state, 'keypressed'):
