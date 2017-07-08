@@ -77,6 +77,7 @@ class HandsetRaised(BaseState):
         if station == 1:
             # Radio Rocks
             self.player = Player("http://www.radioroks.ua/RadioROKS_32.m3u")
+            self.player.start()
             print('started')
 
     def reed_switched(self, event):
