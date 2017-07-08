@@ -26,6 +26,7 @@ class StartState:
         self.buf = []
 
     def update_lcd(self):
+        self.app.lcd.clear()
         self.app.lcd.print(self.kb_buffer_str, 0, 0)
 
     @property

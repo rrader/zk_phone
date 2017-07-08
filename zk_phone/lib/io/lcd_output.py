@@ -32,5 +32,11 @@ class LCD:
     def lcd(self):
         return self._lcd
 
+    def clear(self, lines=None):
+        if lines is None:
+            lines = [0, 1]
+        for l in lines:
+            self.lcd.write(' '*self.lcd.get_width(), pos_x=0, pos_y=l)
+
     def print(self, string, pos_x=None, pos_y=None):
         self.lcd.write(string, pos_x, pos_y)
