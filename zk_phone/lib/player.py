@@ -16,6 +16,11 @@ class Player(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
+        p = subprocess.Popen(
+            ["amixer", "cset", "numid=1", "100%"],
+            shell=False
+        )
+        p.wait()
         self.p = subprocess.Popen(
             ["mplayer", "-playlist", self.stream],
             shell=False,
