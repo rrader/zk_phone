@@ -79,6 +79,11 @@ class HandsetRaised(BaseState):
             self.player = Player("http://www.radioroks.ua/RadioROKS_32.m3u")
             self.player.start()
             print('started')
+        elif station == 2:
+            # Lounge FM
+            self.player = Player("http://cast.loungefm.com.ua:8000/loungefm.aac.m3u")
+            self.player.start()
+            print('started')
 
     def reed_switched(self, event):
         if self.player:
