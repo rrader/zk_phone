@@ -35,7 +35,7 @@ class Speak(threading.Thread):
         audio_max()
         self.p = subprocess.Popen(
             [f'echo "{self.text}" | festival --tts'],
-            shell=False,
+            shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             bufsize=1
