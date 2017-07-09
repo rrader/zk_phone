@@ -81,7 +81,7 @@ class HandsetRaised(BaseState):
             print('started')
         elif station == 2:
             # Lounge FM
-            self.player = Player("http://cast.loungefm.com.ua:8000/loungefm.aac.m3u")
+            self.player = Player("http://cast.loungefm.com.ua:8000/loungefm.m3u")
             self.player.start()
             print('started')
 
