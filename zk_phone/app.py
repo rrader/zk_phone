@@ -8,6 +8,7 @@ from zk_phone.lib.io.lcd_output import LCD
 from zk_phone.lib.io.reed import ReedSwitchInput
 from zk_phone.lib.net import get_ips
 from zk_phone.lib.player import Player, audio_min
+from zk_phone.lib.speak import Speak
 
 
 class BaseState:
@@ -50,6 +51,7 @@ class HandsetPut(BaseState):
             self.kb_clear_buf()
 
     def reed_switched(self, event):
+        Speak("Hello. Type station number and hash").start()
         if event.is_raised:
             self.app.state = HandsetRaised(self.app)
 
