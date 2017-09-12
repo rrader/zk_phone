@@ -2,4 +2,4 @@
 
 git pull origin master
 sudo killall zk_phone
-sudo su -c "nohup zk_phone &"
+sudo sh -c "zk_phone &"

@@ -2,7 +2,10 @@ containers:
   base:
     setup:
     - !Ubuntu trusty
-    - !Install [curl, git, sshpass]
+    - !Install [curl, git, sshpass, ssh]
+    - !EnsureDir /root/.ssh
+    volumes:
+      /root/.ssh: !Tmpfs
 
 commands:
 
@@ -11,4 +14,4 @@ commands:
     container: base
     work-dir: /work
     run: |
-      sshpass -p 'password' ssh pi@192.168.141.153 "cd ~/zk_phone; bash deploy.sh"
+      sshpass -p $PHONE_PASSWORD ssh -o StrictHostKeyChecking=no pi@192.168.141.153 "cd ~/zk_phone; bash deploy.sh"
