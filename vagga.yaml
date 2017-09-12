@@ -14,4 +14,4 @@ commands:
     container: base
     work-dir: /work
     run: |
-      sshpass -p $PHONE_PASSWORD ssh -o StrictHostKeyChecking=no pi@192.168.141.153 "cd ~/zk_phone; bash deploy.sh"
+      sshpass -p $PHONE_PASSWORD ssh -o StrictHostKeyChecking=no pi@192.168.141.153 "cd ~/zk_phone; git pull origin master; bash deploy.sh"
