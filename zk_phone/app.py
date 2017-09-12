@@ -7,6 +7,7 @@ from zk_phone.lib.io.keyboard import KeyboardInput
 from zk_phone.lib.io.lcd_output import LCD
 from zk_phone.lib.io.reed import ReedSwitchInput
 from zk_phone.lib.net import get_ips
+from zk_phone.lib.zakupki import zk_version
 from zk_phone.lib.player import Player, audio_min
 from zk_phone.lib.speak import Speak
 
@@ -48,6 +49,10 @@ class HandsetPut(BaseState):
         if self.kb_buffer_str == '*1#':
             for n, ip in enumerate(get_ips()[:2]):
                 self.app.lcd.print(ip, pos_y=1, pos_x=0)
+            self.kb_clear_buf()
+
+        if self.kb_buffer_str == '*7#':
+            self.app.lcd.print(zk_version(), pos_y=1, pos_x=0)
             self.kb_clear_buf()
 
     def reed_switched(self, event):
