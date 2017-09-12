@@ -1,0 +1,14 @@
+containers:
+  base:
+    setup:
+    - !Ubuntu trusty
+    - !Install [curl, git, sshpass]
+
+commands:
+
+  deploy: !Command
+    description: "deploy"
+    container: base
+    work-dir: /work
+    run: |
+      sshpass -p 'password' ssh pi@192.168.141.153 "cd ~/zk_phone; bash deploy.sh"
