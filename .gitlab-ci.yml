@@ -1,0 +1,7 @@
+stages:
+- deploy
+
+deploy:
+  stage: deploy
+  script:
+    - vagga -ePHONE_PASSWORD deploy
