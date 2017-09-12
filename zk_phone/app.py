@@ -78,7 +78,7 @@ class HandsetRaised(BaseState):
         self.app.lcd.print('Playing {}'.format(station), pos_y=1, pos_x=0)
         if station == 1:
             # Radio Rocks
-            self.player = Player("http://www.radioroks.ua/RadioROKS_32.m3u")
+            self.player = Player("http://www.radioroks.ua/RadioROKS.m3u")
             self.player.start()
             print('started')
         elif station == 2:
