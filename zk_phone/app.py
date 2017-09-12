@@ -52,7 +52,8 @@ class HandsetPut(BaseState):
             self.kb_clear_buf()
 
         if self.kb_buffer_str == '*7#':
-            self.app.lcd.print(zk_version(), pos_y=1, pos_x=0)
+            if zk_version():
+                self.app.lcd.print(zk_version(), pos_y=1, pos_x=0)
             self.kb_clear_buf()
 
     def reed_switched(self, event):
