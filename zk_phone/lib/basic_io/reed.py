@@ -13,7 +13,8 @@ class ReedSwitchedEvent:
 
 class ReedSwitchInput:
 
-    def __init__(self, callback):
+    def __init__(self, app, callback):
+        self.app = app
         self.callback = callback
         GPIO.setup(REED_SWITCH, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 

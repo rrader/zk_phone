@@ -14,9 +14,10 @@ PINS = {
 }
 
 
-class LCD:
+class LCDOutput:
 
-    def __init__(self):
+    def __init__(self, app):
+        self.app = app
         gpio = Gpio()
         gpio.pins = PINS
         self._lcd = lcd.CharLCD(16, 2, gpio)
@@ -26,15 +27,11 @@ class LCD:
         self._lcd.set_xy(0, 0)
         print('LCD attached')
 
-    @property
-    def lcd(self):
-        return self._lcd
-
     def clear(self, lines=None):
         if lines is None:
             lines = [0, 1]
         for l in lines:
-            self.lcd.write(' '*self.lcd.get_width(), pos_x=0, pos_y=l)
+            self._lcd.write(' '*self._lcd.get_width(), pos_x=0, pos_y=l)
 
     def print(self, string, pos_x=None, pos_y=None):
-        self.lcd.write(string, pos_x, pos_y)
+        self._lcd.write(string, pos_x, pos_y)

@@ -22,7 +22,8 @@ class KeyPressedEvent:
 
 class KeyboardInput:
 
-    def __init__(self, callback):
+    def __init__(self, app, callback):
+        self.app = app
         self.callback = callback
         self.keypad = factory.create_keypad(keypad=KEYPAD, row_pins=ROW_PINS, col_pins=COL_PINS)
 
