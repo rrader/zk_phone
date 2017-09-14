@@ -18,6 +18,7 @@ setup(
     entry_points={
         'console_scripts': [
             'zk_phone = zk_phone.main:main',
+            'zk_phone_simulator = zk_phone.lib.simulator.main',
         ],
     },
 )
